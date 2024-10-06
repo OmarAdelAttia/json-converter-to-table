@@ -1,0 +1,81 @@
+@import "../../../assets/styles/abstracts/variables";
+@import "../../../assets/styles/abstracts/mixin";
+
+.container {
+  @extend %flexbox-center;
+  height: 100vh;
+  background-color: $bg--color;
+
+  .login-container {
+    max-width: 30%;
+    max-height: 55%;
+    padding: 2.5rem 5rem;
+    background-color: $input-bg--color;
+    border-radius: 1rem;
+
+    .img-container {
+      max-width: 100%;
+      @extend %flexbox-center;
+
+      img {
+        width: 30%;
+      }
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      text-align: center;
+      padding: 1.5rem;
+      color: $btn-bg--color;
+    }
+
+    .input-container {
+      width: 100%;
+      display: flex;
+      margin: 1rem 0rem;
+      color: $font-input--color;
+      box-shadow: 0.2rem 0.2rem 0.5rem rgba(237, 237, 236, 0.8);
+      @include element(0.7rem, 1.2rem, $border-input--color);
+
+      .pi {
+        padding: 0.5rem;
+        border-right: solid;
+        border-color: $font-input--color;
+      }
+
+      input {
+        border: none;
+        margin-left: 1rem;
+        color: $font-input--color;
+
+        &:focus {
+          outline: none;
+        }
+
+        &::placeholder {
+          color: $font-input--color;
+        }
+      }
+    }
+
+    .btn-container {
+      padding: 1.2rem 0rem;
+
+      button {
+        @include element(0.5rem, 0.8rem, $btn-bg--color);
+        font-weight: 600;
+        background-color: $btn-bg--color;
+        color: $input-bg--color;
+        cursor: pointer;
+      }
+    }
+
+    .forget-password {
+      color: $font-uniqe--color;
+      font-size: 0.7rem;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+    }
+  }
+}

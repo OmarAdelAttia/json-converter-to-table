@@ -1,0 +1,14 @@
+%flexbox-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin element($verticalPadding, $fontSize, $borderColor) {
+  width: 100%;
+  padding: $verticalPadding 1rem;
+  border: 0.1rem solid $borderColor;
+  border-radius: 0.5rem;
+  font-size: $fontSize;
+  box-sizing: border-box;
+}
