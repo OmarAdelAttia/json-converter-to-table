@@ -1,22 +1,24 @@
-<div class="container">
-    <div class="login-container">
-        <div class="img-container">
-            <img [src]="logoImg()" alt="logo">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="container">
+        <div class="login-container">
+            <div class="img-container">
+                <img [src]="logoImg()" alt="logo">
+            </div>
+            <h2 class="title">Login</h2>
+            <div class="input-container">
+                <i class="pi pi-envelope"></i>
+                <input placeholder="Email" type="text" [formControl]="form.controls.email" />
+            </div>
+            <div class="input-container">
+                <i class="pi pi-lock"></i>
+                <input placeholder="Password" type="password" [formControl]="form.controls.password" />
+            </div>
+            <div class="btn-container">
+                <button type="submit">Login</button>
+            </div>
+            <button class="forget-password" (click)="onForgetPassword()" type="button">
+                <p>Forget Password?</p>
+            </button>
         </div>
-        <h2 class="title">Login</h2>
-        <div class="input-container">
-            <i class="pi pi-envelope"></i>
-            <input placeholder="Email" type="text" />
-        </div>
-        <div class="input-container">
-            <i class="pi pi-lock"></i>
-            <input placeholder="Password" type="password" />
-        </div>
-        <div class="btn-container">
-            <button type="submit">Login</button>
-        </div>
-        <button class="forget-password">
-            <p>Forget Password?</p>
-        </button>
     </div>
-</div>
+</form>
