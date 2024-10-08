@@ -1,0 +1,102 @@
+@import "../../../assets/styles/abstracts/variables";
+@import "../../../assets/styles/abstracts/mixin";
+
+.container {
+  padding: 0 2rem;
+  background-color: $bg--color;
+
+  .title-container {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .textarea-container {
+    textarea {
+      border-radius: 0.5rem;
+      width: 100%;
+      min-height: 15rem;
+      background-color: $json-bg--color;
+      color: $input-bg--color;
+      border: none;
+      padding: 1rem;
+    }
+  }
+
+  .input-container {
+    padding: 0.5rem 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+
+    .inputfield-container {
+      margin-left: 0.3rem;
+      margin-right: 0.3rem;
+      margin-bottom: 1rem;
+
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: $font-input--color;
+      }
+
+      input {
+        border: none;
+        padding: 0.7rem 0.5rem;
+        border-radius: 0.5rem;
+        min-width: 5rem;
+      }
+    }
+
+    .plus-container {
+      display: flex;
+      align-items: center;
+
+      .plus {
+        @extend %flexbox-center;
+        border: none;
+        border-radius: 0.5rem;
+        padding: 0.2rem;
+        max-height: 2.2rem;
+        min-width: 2.2rem;
+        color: $input-bg--color;
+        font-size: 2.5rem;
+        text-align: center;
+        background-color: $primary-bg--color;
+        margin: 1rem 0.5rem 0.5rem;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .btns-container {
+    button {
+      min-width: 12rem;
+      margin: 1rem;
+      cursor: pointer;
+      &:first-child {
+        @include element(0.7rem, 0.8rem, $font-input--color);
+        background-color: $input-bg--color;
+        color: $font-input--color;
+      }
+      &:last-child {
+        @include element(0.7rem, 0.8rem, $primary-bg--color);
+        background-color: $primary-bg--color;
+        color: $input-bg--color;
+      }
+    }
+  }
+
+  th {
+    &:first-child {
+      border-radius: 1rem 0 0 0;
+    }
+    &:last-child {
+      border-radius: 0 1rem 0 0;
+    }
+    text-align: center;
+    padding: 0.8rem;
+  }
+  td {
+    text-align: center;
+    padding: 0.8rem;
+    border: none;
+  }
+}

@@ -63,6 +63,7 @@
 
       button {
         @include element(0.5rem, 0.8rem, $btn-bg--color);
+        width: 100%;
         font-weight: 600;
         background-color: $btn-bg--color;
         color: $input-bg--color;

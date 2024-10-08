@@ -13,7 +13,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class LoginComponent {
 
-  logoImg = signal<string>("../../../assets/imgs/image.png");
+  logoImg = signal<string>("../../../assets/imgs/logo.png");
 
   form = new FormGroup({
     email: new FormControl(undefined, {

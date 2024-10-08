@@ -1,1 +1,66 @@
-<p>json-table works!</p>
+<app-nav />
+
+<div class="container">
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <!-- json -->
+        <div class="title-container">
+            <h2>{{ "json :" | uppercase }}</h2>
+        </div>
+        <div class="textarea-container">
+            <textarea name="json" id="json" (change)="onChange()" [formControl]="form.controls.data"></textarea>
+        </div>
+
+        <!-- filter -->
+        @if (keys.length > 0) {
+        <div class="title-container">
+            <h2>Filter :</h2>
+        </div>
+        <div class="input-container">
+            @for (item of keys; track $index) {
+            <div class="inputfield-container">
+                <label>{{item}}</label>
+                <input type="text" />
+            </div>
+            }
+            <div class="plus-container">
+                <button class="plus" type="button" (click)="onAdd()">
+                    <p>+</p>
+                </button>
+            </div>
+        </div>
+        <div class="btns-container">
+            <button type="button" (click)="onCancel()">Clear Search</button>
+            <button type="submit">Search</button>
+        </div>
+        }
+
+        <!-- data -->
+        @if (keys.length > 0) {
+        <div class="title-container">
+            <h2>Data :</h2>
+        </div>
+        <p-table [value]="rowDataArray" [paginator]="true" [rows]="5">
+            <ng-template pTemplate="header">
+                <tr>
+                    @for (col of keys; track $index) {
+                    <th>{{ col }}</th>
+                    }
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData>
+                @for (item of rowDataArray; track $index) {
+                <tr>
+                    @for (col of item; track $index) {
+                    <td>{{ col }}</td>
+                    }
+                </tr>
+                }
+            </ng-template>
+        </p-table>
+        }
+
+    </form>
+
+</div>
