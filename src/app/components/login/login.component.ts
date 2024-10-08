@@ -1,8 +1,9 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 export class LoginComponent {
 
   logoImg = signal<string>("../../../assets/imgs/logo.png");
+  authSrv = inject(AuthService);
 
   form = new FormGroup({
     email: new FormControl(undefined, {
@@ -36,6 +38,7 @@ export class LoginComponent {
   onSubmit() {
     const enteredEmail = this.form.value.email;
     const enteredPassword = this.form.value.password;
+    this.authSrv.login(enteredEmail, enteredPassword)
   }
 
 }

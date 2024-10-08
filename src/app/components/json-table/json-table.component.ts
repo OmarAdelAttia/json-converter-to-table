@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { NavComponent } from "../nav/nav.component";
 import { UpperCasePipe } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -28,33 +28,54 @@ export class JsonTableComponent {
 
   rowDataArray!: any[];
 
+  jsonErrorMessage = signal<string | null>(null);
+
+  obj!: any[];
+
   onAdd() { }
 
   onCancel() { }
 
-  onSubmit() { }
+  onSubmit(e: any) {
+    console.log(e)
+    console.log(this.form)
+  }
 
-  onChange() {
-    let jsonObject
-    if (this.form.value.data) {
-      jsonObject = JSON.parse(this.form.value.data);
+  onPaste() {
+    try {
+      this.jsonErrorMessage.set(null);
+      let jsonObject;
+      if (this.form.value.data) {
+        jsonObject = JSON.parse(this.form.value.data);
+      }
+      this.keys = Object.keys(jsonObject[0]);
+      this.obj = jsonObject;
+      const totalArr = [];
+      const totalVal = [];
+      for (let element of jsonObject) {
+        const arr = [];
+        const val = [];
+        arr.push(...Object.entries(element));
+        totalArr.push(arr);
+        val.push(...Object.values(element));
+        totalVal.push(val);
+      }
+      this.rowDataArray = totalArr;
+      this.valuesArr = totalVal;
+      console.log(this.obj)
+    } catch (e) {
+      this.jsonErrorMessage.set("Invalid JSON format. Please correct it.");
     }
-    this.keys = Object.keys(jsonObject[0]);
-    const totalArr = [];
-    for (let element of jsonObject) {
-      const arr = [];
-      arr.push(...Object.values(element))
-      console.log(arr);
-      totalArr.push(arr);
-      // this.rowDataArray.push(arr);
-      // console.log(this.rowDataArray)
-      // let data = Object.values(element);
-      // console.log(data)
-      // this.valuesArr.push(data);
-      // console.log(this.valuesArr)
-    }
-    this.rowDataArray = totalArr
-    console.log(this.rowDataArray);
 
   }
+
+  validateJSON(jsonString: string): boolean {
+    try {
+      JSON.parse(jsonString);
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
 }
